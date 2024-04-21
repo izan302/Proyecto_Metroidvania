@@ -34,7 +34,7 @@ public class CameraMovement : MonoBehaviour
                 Direccion = -1;
             }
 
-            transform.position = Vector3.Lerp(transform.position, movePosition + new Vector3(6f*Direccion, 0, 0), lerp);
+            transform.position = Vector3.Lerp(transform.position, movePosition + new Vector3(10f*Direccion, 0, 0), lerp);
         }
     }
     void FixedUpdate()

@@ -14,12 +14,16 @@ public class PlayerMovement : MonoBehaviour
 {
     // Start is called before the first frame update
     private Rigidbody2D rbPlayer;
-    [SerializeField] float VelocidadLateral;
-    [SerializeField] float VelocidadSalto;
-    [SerializeField] GameObject BoundingBox;
-    public bool PlayerFuera;
+    private float inputLateral;
+     public bool PlayerFuera;
     private bool isGrounded;
+    private bool mirandoDerecha;
 
+
+    [SerializeField] float velocidad = 8f;
+    [SerializeField] float potenciaSalto = 16f;
+    [SerializeField] GameObject BoundingBox;
+    
     void Start()
     {
         rbPlayer = gameObject.GetComponent<Rigidbody2D>(); 
@@ -28,29 +32,32 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.D)) {
-            rbPlayer.AddForce(new Vector2(VelocidadLateral, 0));
-            //Debug.Log("Aguacate");
+        inputLateral = Input.GetAxisRaw("Horizontal");
+
+        if(Input.GetKeyDown(KeyCode.Space) && isGrounded) {
+            rbPlayer.velocity = new Vector2(rbPlayer.velocity.x, potenciaSalto);
         }
-        if(Input.GetKeyUp(KeyCode.D)) {
-            rbPlayer.velocity = Vector3.zero;
-            //Debug.Log("Aguacate");
+
+        if(Input.GetKeyUp(KeyCode.Space) && rbPlayer.velocity.y > 0f) {
+            rbPlayer.velocity = new Vector2(rbPlayer.velocity.x, rbPlayer.velocity.y * 0.5f);
         }
-        if(Input.GetKey(KeyCode.A)) {
-            rbPlayer.AddForce(new Vector2(-VelocidadLateral, 0));
-            //Debug.Log("Aguacate");
-        }
-         if(Input.GetKeyUp(KeyCode.A)) {
-            rbPlayer.velocity = Vector3.zero;
-            //Debug.Log("Aguacate");
-        }
-        if(Input.GetKeyDown(KeyCode.Space) && isGrounded){
-            rbPlayer.AddForce(new Vector2(0, VelocidadSalto));
-            //Debug.Log("Salto");
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
+
+        if (Input.GetKeyDown(KeyCode.R)) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        Voltear();
+    }
+
+    private void FixedUpdate() {
+        rbPlayer.velocity = new Vector2(inputLateral*velocidad, rbPlayer.velocity.y);
+    }
+
+    public void Voltear() {
+        if (mirandoDerecha && inputLateral > 0f || !mirandoDerecha && inputLateral < 0f) {
+            mirandoDerecha = !mirandoDerecha;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
         }
     }
 
