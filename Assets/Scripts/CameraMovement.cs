@@ -17,30 +17,34 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] float lerp;
     private Vector3 velocidad = Vector3.zero;
     [SerializeField] PlayerMovement Script;
-    private float Direccion;
+    [SerializeField] GameObject BoundingBox;
+    private float DireccionX;
+    private float DireccionY;
     private bool PlayerFuera;
+    private Vector3 BoundingBoxSize;
     void Start()
     {
-        
+        BoundingBoxSize = BoundingBox.GetComponent<Collider2D>().bounds.size;
     }
     void Update() {
 
         if(Script.PlayerFuera) {
             Vector3 movePosition = player.position + offset;
-            //transform.position = Vector3.SmoothDamp(transform.position, movePosition, ref velocidad, damping);
-            if (player.position.x < transform.position.x) {
-                Direccion = 1;
-            }else {
-                Direccion = -1;
-            }
 
-            transform.position = Vector3.Lerp(transform.position, movePosition + new Vector3(10f*Direccion, 0, 0), lerp);
+            if (player.position.x < transform.position.x) {
+                DireccionX = 1;
+            }else {
+                DireccionX = -1;
+            }
+            transform.position = Vector3.Lerp(transform.position, movePosition + new Vector3((BoundingBoxSize.x/2)*DireccionX, 0, 0), lerp);
+
+
+            if (player.position.y < transform.position.y) {
+                DireccionY = 1;
+            }else {
+                DireccionY = -1;
+            }
+            
         }
     }
-    void FixedUpdate()
-    {
-        
-    }
-
-    
 }
