@@ -481,10 +481,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 458783245}
+  - component: {fileID: 458783246}
   - component: {fileID: 458783249}
   - component: {fileID: 458783248}
   - component: {fileID: 458783247}
-  - component: {fileID: 458783246}
+  - component: {fileID: 458783250}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -501,8 +502,8 @@ Transform:
   m_GameObject: {fileID: 458783244}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.68, y: -8.45, z: 0.07713178}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -4.762, y: -8.378, z: 0.07713178}
+  m_LocalScale: {x: 3.3255, y: 3.0943, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -548,7 +549,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 19c5d339e1be0e24891b30f12755e88a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ae44d6ca9dc728943a492226b377d3f4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -591,18 +592,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.18486187, y: -0.17905885}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.7, y: 1.63}
+    oldSize: {x: 1.28, y: 0.96}
     newSize: {x: 1.7, y: 1.63}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.16724157, y: 0.6418823}
   m_EdgeRadius: 0
 --- !u!50 &458783248
 Rigidbody2D:
@@ -628,8 +629,8 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!95 &458783249
 Animator:
@@ -652,6 +653,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &458783250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458783244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2777217115b4bfe4d83375c5b345f503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 990339610}
+  distance: 0
+  initialPoint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
