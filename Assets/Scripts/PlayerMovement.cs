@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private bool mirandoDerecha;
 
 
-    [SerializeField] float velocidad = 8f;
+    [SerializeField] float velocidad = 8f; 
     [SerializeField] float potenciaSalto = 16f;
     [SerializeField] GameObject BoundingBox;
     
