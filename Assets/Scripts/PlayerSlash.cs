@@ -12,7 +12,7 @@ public class PlayerSlash : MonoBehaviour
     
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>(); 
     }
     
     private void Update()
@@ -27,7 +27,7 @@ public class PlayerSlash : MonoBehaviour
     
     private void Golpe()
     {
-        animator.SetTrigger("Attack");
+        animator.SetTrigger("Attack1");
         
         Collider2D[] objetos = Physics2D.OverlapCircleAll (controladorGolpe.position, radioGolpe);
 
@@ -35,7 +35,7 @@ public class PlayerSlash : MonoBehaviour
         {
             if (colisionador.CompareTag("Enemigo"))
             {
-                //colisionador.transform.GetComponent<Enemigo>().TomarDa�o(da�oGolpe);
+                //colisionador.transform.GetComponent<Enemy>().TomarDa�o(da�oGolpe);
             }
         }
 

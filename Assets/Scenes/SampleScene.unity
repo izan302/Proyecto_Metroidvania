@@ -265,6 +265,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3941403892399915485, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 3941403892399915485, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.87
+      objectReference: {fileID: 0}
     - target: {fileID: 6323719953710832613, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
       propertyPath: m_Name
       value: HeroKnight
@@ -354,6 +362,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1924933960}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6323719953710832613, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 990339611}
     - targetCorrespondingSourceObject: {fileID: 6323719953710832613, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 990339604}
@@ -779,6 +790,11 @@ MonoBehaviour:
   lerp: 0.04
   Script: {fileID: 990339604}
   BoundingBox: {fileID: 1689945583}
+--- !u!4 &760320093 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3941403892399915485, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
+  m_PrefabInstance: {fileID: 346942839}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &918164487
 GameObject:
   m_ObjectHideFlags: 0
@@ -1020,6 +1036,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8413529789942519730, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
   m_PrefabInstance: {fileID: 346942839}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &990339611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990339603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a90d2981fe858d44d983ade528e5447a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controladorGolpe: {fileID: 760320093}
+  radioGolpe: 1
+  dansoGolpe: 20
 --- !u!1001 &1096212532
 PrefabInstance:
   m_ObjectHideFlags: 0
