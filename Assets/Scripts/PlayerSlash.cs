@@ -6,7 +6,7 @@ public class PlayerSlash : MonoBehaviour
 {
     [SerializeField] private Transform controladorGolpe;
     [SerializeField] private float radioGolpe;
-    [SerializeField] private float dansoGolpe;
+    [SerializeField] private float danoGolpe;
     private Animator animator;
 
     
@@ -35,7 +35,7 @@ public class PlayerSlash : MonoBehaviour
         {
             if (colisionador.CompareTag("Enemigo"))
             {
-                //colisionador.transform.GetComponent<Enemy>().TomarDa�o(da�oGolpe);
+                colisionador.transform.GetComponent<Enemigo>().TomarDano(danoGolpe);
             }
         }
 
