@@ -9,16 +9,16 @@ public class PatrolAction : FSMAction
     {
         var patrolAgent = stateMachine.GetComponent<PatrollingAgent>();
         var patrolPoints = stateMachine.GetComponent<PatrolPoints>();
-
-        patrolAgent.SetDestination(patrolPoints.GetNext().position);
+        Debug.Log("Action1");
+        patrolAgent.SetDestination(patrolPoints.GetNext());
     }
 
     public override void Execute(BaseStateMachine stateMachine)
     {
         var patrolAgent = stateMachine.GetComponent<PatrollingAgent>();
         var patrolPoints = stateMachine.GetComponent<PatrolPoints>();
-
+        Debug.Log("Action2");
         if (patrolPoints.HasReached(patrolAgent))
-            patrolAgent.SetDestination(patrolPoints.GetNext().position);
+            patrolAgent.SetDestination(patrolPoints.GetNext());
     }
 }

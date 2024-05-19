@@ -7,74 +7,49 @@ using UnityEngine.UIElements;
 
 public class PatrollingAgent : MonoBehaviour
 {
+    [SerializeField] float speed = 5f;
     Rigidbody2D rb;
     Animator animator;
-
-    private Vector2 destination;
-
-    public float moveSpeed = 5.0f;
-    public float stoppingDistance = 0.001f;
-
-    public bool hasPath { get; private set; }
-    Vector2 lookAt;
-    Vector2 moveDirection;
-
-
-    public float remainingDistance
-    {
-        get
-        {
-            return (destination - new Vector2(transform.position.x, transform.position.y)).magnitude;
+    private Transform currentPoint;
+    public float stoppingDistance = 0.01f;
+    public float remainingDistance {
+        get {
+            return Vector2.Distance(transform.position, currentPoint.position);
         }
     }
-
-    public Vector2 velocity
-    {
-        get
-        {
-            return rb.velocity;
-        }
-    }
-
-    public void SetDestination(Vector2 newDestination)
-    {
-        destination = newDestination;
-        hasPath = true;
-    }
-
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-
-        hasPath = true;
     }
 
     void FixedUpdate()
     {
-        rb.velocity = moveDirection * moveSpeed;
-
+        
         //UpdateAnimation();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (hasPath)
-        {
-            moveDirection = Vector2.zero;
-
-            if (remainingDistance > stoppingDistance)
-                moveDirection = (destination - new Vector2(transform.position.x, 0)).normalized;
-        }
-
-        if (moveDirection.sqrMagnitude > 0.0f)
-        {
-            lookAt = moveDirection;
-        }
+       
     }
 
+    public void SetDestination(Transform newPoint) {
+        if (currentPoint == null) currentPoint = newPoint;
+        
+        if (currentPoint.position.x > newPoint.position.x) {
+            rb.velocity = new Vector2(speed, 0);
+            currentPoint = newPoint;
+            Debug.Log(rb.velocity);
+        }else {
+            rb.velocity = new Vector2(-speed, 0);
+            currentPoint = newPoint;
+            Debug.Log(rb.velocity);
+        }
+        
+    }
     /*void UpdateAnimation()
     {
         animator.SetFloat("LookAtX", lookAt.x);
