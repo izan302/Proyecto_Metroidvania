@@ -48,7 +48,7 @@ public class PatrollingAgent : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
-        hasPath = false;
+        hasPath = true;
     }
 
     void FixedUpdate()
@@ -66,7 +66,7 @@ public class PatrollingAgent : MonoBehaviour
             moveDirection = Vector2.zero;
 
             if (remainingDistance > stoppingDistance)
-                moveDirection = (destination - new Vector2(transform.position.x, transform.position.y)).normalized;
+                moveDirection = (destination - new Vector2(transform.position.x, 0)).normalized;
         }
 
         if (moveDirection.sqrMagnitude > 0.0f)
