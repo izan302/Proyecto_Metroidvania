@@ -32,8 +32,10 @@ public class CameraMovement : MonoBehaviour
 
             if (player.position.x < transform.position.x) {
                 DireccionX = 1;
+                movePosition.y = -6;
             }else {
                 DireccionX = -1;
+                movePosition.y = -6;
             }
             transform.position = Vector3.Lerp(transform.position, movePosition + new Vector3((BoundingBoxSize.x/2)*DireccionX, 0, 0), lerp);            
         }
