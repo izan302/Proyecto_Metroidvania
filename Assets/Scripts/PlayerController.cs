@@ -19,6 +19,10 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     private bool mirandoDerecha;
     private Animator animator;
+    public int maxHealth = 100;
+    public int currentHealth;
+
+    public HealthBar healthBar;
 
     [SerializeField] private Transform controladorGolpe;
     [SerializeField] private float radioGolpe;
@@ -31,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rbPlayer = gameObject.GetComponent<Rigidbody2D>(); 
         animator = GetComponent<Animator>();
+        currentHealth = maxHealth;
+        healthBar.setMaxHealth(maxHealth);
         
     }
 
@@ -132,5 +138,12 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.tag == "Ground") {
             isGrounded = false;
         }
+    }
+
+    void takeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        healthBar.setHealth(currentHealth);
     }
 }
