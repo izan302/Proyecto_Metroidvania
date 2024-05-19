@@ -19,7 +19,6 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] PlayerMovement Script;
     [SerializeField] GameObject BoundingBox;
     private float DireccionX;
-    private float DireccionY;
     private bool PlayerFuera;
     private Vector3 BoundingBoxSize;
     void Start()
@@ -36,15 +35,7 @@ public class CameraMovement : MonoBehaviour
             }else {
                 DireccionX = -1;
             }
-            transform.position = Vector3.Lerp(transform.position, movePosition + new Vector3((BoundingBoxSize.x/2)*DireccionX, 0, 0), lerp);
-
-
-            if (player.position.y < transform.position.y) {
-                DireccionY = 1;
-            }else {
-                DireccionY = -1;
-            }
-            
+            transform.position = Vector3.Lerp(transform.position, movePosition + new Vector3((BoundingBoxSize.x/2)*DireccionX, 0, 0), lerp);            
         }
     }
 }
