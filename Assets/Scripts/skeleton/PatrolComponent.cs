@@ -10,11 +10,20 @@ public class PatrollingAgent : MonoBehaviour
     [SerializeField] float speed = 5f;
     Rigidbody2D rb;
     Animator animator;
-    private Transform currentPoint;
-    public float stoppingDistance = 0.01f;
+    private Vector2 destination;
+    public Transform currentPoint;
+    public float stoppingDistance = 0.0001f;
+    Vector2 moveDirection;
     public float remainingDistance {
         get {
-            return Vector2.Distance(transform.position, currentPoint.position);
+            return (destination - new Vector2(transform.position.x, transform.position.y)).magnitude;
+        }
+    }
+    public Vector2 velocity
+    {
+        get
+        {
+            return rb.velocity;
         }
     }
     // Start is called before the first frame update
@@ -26,29 +35,24 @@ public class PatrollingAgent : MonoBehaviour
 
     void FixedUpdate()
     {
-        
+        rb.velocity = moveDirection * speed;
         //UpdateAnimation();
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+        moveDirection = Vector2.zero;
+
+       if (remainingDistance > stoppingDistance) {
+            Debug.Log(remainingDistance);
+            moveDirection = (destination - new Vector2(transform.position.x, transform.position.y)).normalized;
+       }
     }
 
-    public void SetDestination(Transform newPoint) {
-        if (currentPoint == null) currentPoint = newPoint;
-        
-        if (currentPoint.position.x > newPoint.position.x) {
-            rb.velocity = new Vector2(speed, 0);
-            currentPoint = newPoint;
-            Debug.Log(rb.velocity);
-        }else {
-            rb.velocity = new Vector2(-speed, 0);
-            currentPoint = newPoint;
-            Debug.Log(rb.velocity);
-        }
-        
+    public void SetDestination(Vector2 newDestination) {
+        destination = newDestination;
+        Debug.Log(destination);
     }
     /*void UpdateAnimation()
     {

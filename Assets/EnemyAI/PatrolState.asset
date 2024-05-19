@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e986194f2d93e4074b0ad7a37bfe62e5, type: 3}
   m_Name: PatrolState
   m_EditorClassIdentifier: 
-  Action: []
+  Action:
+  - {fileID: 11400000, guid: d1426ebf141c7d2408dbe25ecdd8a9e4, type: 2}
   Transitions: []

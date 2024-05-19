@@ -31,7 +31,10 @@ public class PatrolPoints : MonoBehaviour
     {
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
-            return true;
+            if (agent.velocity.sqrMagnitude == 0f)
+            {
+                return true;
+            }
         }
 
         return false;
