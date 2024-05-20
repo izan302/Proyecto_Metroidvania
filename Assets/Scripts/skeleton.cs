@@ -7,6 +7,9 @@ public class skeleton : MonoBehaviour
     [SerializeField] private float hp;
     private Animator animator;
     private bool alive = true;
+    public int damage;
+
+    public PlayerMovement playerHealth;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -31,5 +34,11 @@ public class skeleton : MonoBehaviour
         animator.SetTrigger("Muerte");
         alive = false;
     }
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            playerHealth.takeDamage(damage);
+        }
+    }
 }

@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     private bool mirandoDerecha;
     private Animator animator;
-    public int maxHealth = 100;
+    public int playerHealth = 100;
     public int currentHealth;
 
     public HealthBar healthBar;
@@ -35,8 +35,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rbPlayer = gameObject.GetComponent<Rigidbody2D>(); 
         animator = GetComponent<Animator>();
-        currentHealth = maxHealth;
-        healthBar.setMaxHealth(maxHealth);
+        currentHealth = playerHealth;
+        healthBar.setMaxHealth(playerHealth);
         
     }
 
@@ -140,10 +140,16 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void takeDamage(int damage)
+     public void takeDamage(int damage)
     {
         currentHealth -= damage;
 
         healthBar.setHealth(currentHealth);
+
+        if (currentHealth < 0)
+        {
+            healthBar.setHealth(0);
+            Destroy(gameObject);
+        }
     }
 }

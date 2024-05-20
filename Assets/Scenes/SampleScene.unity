@@ -782,7 +782,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &458783245
 Transform:
   m_ObjectHideFlags: 0
@@ -971,6 +971,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  currentPoint: {fileID: 0}
   stoppingDistance: 0.001
 --- !u!114 &458783252
 MonoBehaviour:
@@ -997,7 +998,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2777217115b4bfe4d83375c5b345f503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 3
+  hp: 9
+  damage: 3
+  playerHealth: {fileID: 990339604}
 --- !u!1 &480326681
 GameObject:
   m_ObjectHideFlags: 0
@@ -1331,12 +1334,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerFuera: 0
-  maxHealth: 9
+  playerHealth: 100
   currentHealth: 9
   healthBar: {fileID: 111410847}
   controladorGolpe: {fileID: 494669873}
   radioGolpe: 0.5
-  danoGolpe: 1
+  danoGolpe: 3
   velocidad: 8
   potenciaSalto: 20
   BoundingBox: {fileID: 1689945583}
@@ -2028,7 +2031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerFuera: 0
-  maxHealth: 100
+  playerHealth: 100
   currentHealth: 0
   healthBar: {fileID: 0}
   controladorGolpe: {fileID: 0}
