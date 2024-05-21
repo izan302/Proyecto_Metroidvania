@@ -17,6 +17,7 @@ public class skeleton : MonoBehaviour
 
     private void Update()
     {
+        
     }
 
     public void TomarDano(float dano)

@@ -160,6 +160,7 @@ public class PlayerMovement : MonoBehaviour
      public void takeDamage(float damage)
     {
         currentHealth -= damage;
+        animator.SetTrigger("Hurt");
 
         healthBar.setHealth(currentHealth);
 

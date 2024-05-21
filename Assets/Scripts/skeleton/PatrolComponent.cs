@@ -47,6 +47,18 @@ public class PatrollingAgent : MonoBehaviour
        if (remainingDistance > stoppingDistance) {
             moveDirection = (destination - new Vector2(transform.position.x, transform.position.y)).normalized;
        }
+
+       Vector3 localScale = transform.localScale;
+       if (destination.x > transform.position.x)
+       {
+           localScale.x = 4.5f;
+           transform.localScale = localScale;
+       } else
+       {
+           localScale.x = -4.5f;
+           transform.localScale = localScale;
+       }
+
     }
 
     public void SetDestination(Vector2 newDestination) {
