@@ -27,6 +27,7 @@ public class skeleton : MonoBehaviour
         {
             Muerte();
         }
+        else animator.SetTrigger("Hit");
     }
 
     public void Muerte()
