@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3b4ff2b09b174201a7defe56918cf69, type: 3}
+  m_Name: LostPlayerTransition
+  m_EditorClassIdentifier: 
+  Decision: {fileID: 11400000, guid: 6ec71b10c79550848be43a86cb2a428e, type: 2}
+  TrueState: {fileID: 11400000, guid: 67ee285c6e325ca47a2a1dafe5febba9, type: 2}
+  FalseState: {fileID: 11400000, guid: d56cf65f400b97447825721749d7e063, type: 2}

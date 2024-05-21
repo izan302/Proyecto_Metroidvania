@@ -1083,9 +1083,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7d4712bafe6784ab97d64cb011fdbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sightDistance: 10
-  lostDistance: 15
-  attackDistance: 5
+  sightDistance: 40
+  lostDistance: 80
+  attackDistance: 6
 --- !u!114 &458783255
 MonoBehaviour:
   m_ObjectHideFlags: 0
