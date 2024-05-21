@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     public int playerHealth = 100;
     public int currentHealth;
+    private bool alive = true;
 
     public HealthBar healthBar;
 
@@ -43,50 +44,60 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        inputLateral = Input.GetAxisRaw("Horizontal");
-
-        if (isGrounded)
+        if (alive)
         {
-            animator.SetBool("Falling", false);
-            animator.SetBool("Grounded", true);
-        }
-        else
-        {
-            animator.SetBool("Grounded", false);
-        }
+            inputLateral = Input.GetAxisRaw("Horizontal");
 
-        if(rbPlayer.velocity.y < 0f)
-        {
-            animator.SetBool("Falling", true);
-        }
+            if (isGrounded)
+            {
+                animator.SetBool("Falling", false);
+                animator.SetBool("Grounded", true);
+            }
+            else
+            {
+                animator.SetBool("Grounded", false);
+            }
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded) {
-            rbPlayer.velocity = new Vector2(rbPlayer.velocity.x, potenciaSalto);
-            animator.SetTrigger("Jump");
-        }
+            if (rbPlayer.velocity.y < 0f)
+            {
+                animator.SetBool("Falling", true);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+            {
+                rbPlayer.velocity = new Vector2(rbPlayer.velocity.x, potenciaSalto);
+                animator.SetTrigger("Jump");
+            }
 
 
-        if(Input.GetKeyUp(KeyCode.Space) && rbPlayer.velocity.y > 0f) {
-            rbPlayer.velocity = new Vector2(rbPlayer.velocity.x, rbPlayer.velocity.y * 0.5f);
-            
-        }
+            if (Input.GetKeyUp(KeyCode.Space) && rbPlayer.velocity.y > 0f)
+            {
+                rbPlayer.velocity = new Vector2(rbPlayer.velocity.x, rbPlayer.velocity.y * 0.5f);
 
-        if (Input.GetKeyDown(KeyCode.R)) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
+            }
 
-        if (Input.GetButtonDown("Fire1")) {
-            Golpe();
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+
+            if (Input.GetButtonDown("Fire1"))
+            {
+                Golpe();
+            }
+            Voltear();
         }
-        Voltear();
     }
 
     private void FixedUpdate() {
-        rbPlayer.velocity = new Vector2(inputLateral*velocidad, rbPlayer.velocity.y);
-        animator.SetBool("Walking", true);
-        if(inputLateral == 0)
+        if (alive)
         {
-            animator.SetBool("Walking", false);
+            rbPlayer.velocity = new Vector2(inputLateral * velocidad, rbPlayer.velocity.y);
+            animator.SetBool("Walking", true);
+            if (inputLateral == 0)
+            {
+                animator.SetBool("Walking", false);
+            }
         }
     }
 
@@ -149,7 +160,8 @@ public class PlayerMovement : MonoBehaviour
         if (currentHealth < 0)
         {
             healthBar.setHealth(0);
-            Destroy(gameObject);
+            animator.SetTrigger("Death");
+            alive = false;
         }
     }
 }
