@@ -12,7 +12,7 @@ public class PatrollingAgent : MonoBehaviour
     Animator animator;
     private Vector2 destination;
     public Transform currentPoint;
-    public float stoppingDistance = 0.0001f;
+    public float stoppingDistance = 1f;
     Vector2 moveDirection;
     public float remainingDistance {
         get {
@@ -36,7 +36,7 @@ public class PatrollingAgent : MonoBehaviour
     void FixedUpdate()
     {
         rb.velocity = moveDirection * speed;
-        //UpdateAnimation();
+        UpdateAnimation();
     }
 
     // Update is called once per frame
@@ -45,19 +45,16 @@ public class PatrollingAgent : MonoBehaviour
         moveDirection = Vector2.zero;
 
        if (remainingDistance > stoppingDistance) {
-            Debug.Log(remainingDistance);
             moveDirection = (destination - new Vector2(transform.position.x, transform.position.y)).normalized;
        }
     }
 
     public void SetDestination(Vector2 newDestination) {
         destination = newDestination;
-        Debug.Log(destination);
     }
-    /*void UpdateAnimation()
+
+    void UpdateAnimation()
     {
-        animator.SetFloat("LookAtX", lookAt.x);
-        animator.SetFloat("LookAtY", lookAt.y);
-        animator.SetFloat("Speed", rb.velocity.sqrMagnitude);
-    }*/
+        
+    }
 }

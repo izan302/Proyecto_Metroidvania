@@ -16,8 +16,7 @@ public class PatrolAction : FSMAction
     {
         var patrolAgent = stateMachine.GetComponent<PatrollingAgent>();
         var patrolPoints = stateMachine.GetComponent<PatrolPoints>();
-        Debug.Log(patrolPoints.HasReached(patrolAgent));
-        if (patrolPoints.HasReached(patrolAgent)) {
+        if (patrolAgent.remainingDistance <= patrolAgent.stoppingDistance) {
             var patrolPoint = patrolPoints.GetNext().position;
             patrolAgent.SetDestination(patrolPoint);
         }
