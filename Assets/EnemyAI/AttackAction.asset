@@ -9,10 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e986194f2d93e4074b0ad7a37bfe62e5, type: 3}
-  m_Name: ChaseState
+  m_Script: {fileID: 11500000, guid: ddf0392906bd1af428d79b096f54cac9, type: 3}
+  m_Name: AttackAction
   m_EditorClassIdentifier: 
-  Action:
-  - {fileID: 11400000, guid: 2d15ade8cb0e80b40b2c93c6a3365797, type: 2}
-  Transitions:
-  - {fileID: 11400000, guid: 57da25e258e4d1847adb72fe24f561cb, type: 2}

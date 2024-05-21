@@ -5,8 +5,9 @@ using UnityEngine;
 public class EnemySightSensor : MonoBehaviour
 {
     public Transform Player { get; private set; }
-    public float sightDistance = 5.0f;
-    public float lostDistance = 10.0f;
+    public float sightDistance = 10.0f;
+    public float lostDistance = 15.0f;
+    public float attackDistance = 4f;
 
     private void Awake()
     {
@@ -31,4 +32,10 @@ public class EnemySightSensor : MonoBehaviour
     {
         return GetPlayerDistance() > lostDistance;
     }
+
+    public bool Slash()
+    {
+        return GetPlayerDistance() <= attackDistance;
+    }
+
 }

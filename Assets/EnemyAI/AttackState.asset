@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e986194f2d93e4074b0ad7a37bfe62e5, type: 3}
-  m_Name: ChaseState
+  m_Name: AttackState
   m_EditorClassIdentifier: 
   Action:
-  - {fileID: 11400000, guid: 2d15ade8cb0e80b40b2c93c6a3365797, type: 2}
+  - {fileID: 11400000, guid: 224f78e34abe7804bbca144b23524579, type: 2}
   Transitions:
-  - {fileID: 11400000, guid: 57da25e258e4d1847adb72fe24f561cb, type: 2}
+  - {fileID: 11400000, guid: 0a181b06c4fe9ba4287f70acdbaa26c6, type: 2}

@@ -19,8 +19,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     private bool mirandoDerecha;
     private Animator animator;
-    public int playerHealth = 100;
-    public int currentHealth;
+    public float playerHealth = 100;
+    public float currentHealth;
     private bool alive = true;
 
     public HealthBar healthBar;
@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform controladorGolpe;
     [SerializeField] private float radioGolpe;
     [SerializeField] private float danoGolpe;
+    [SerializeField] private float tiempoEntreAtaques;
+    [SerializeField] private float tiempoSiguienteAtaque;
     [SerializeField] float velocidad = 8f; 
     [SerializeField] float potenciaSalto = 16f;
     [SerializeField] GameObject BoundingBox;
@@ -80,10 +82,14 @@ public class PlayerMovement : MonoBehaviour
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
-
-            if (Input.GetButtonDown("Fire1"))
+            if(tiempoSiguienteAtaque > 0)
+            {
+                tiempoSiguienteAtaque -= Time.deltaTime;
+            }
+            if (Input.GetButtonDown("Fire1") && tiempoSiguienteAtaque <= 0)
             {
                 Golpe();
+                tiempoSiguienteAtaque = tiempoEntreAtaques;
             }
             Voltear();
         }
@@ -151,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-     public void takeDamage(int damage)
+     public void takeDamage(float damage)
     {
         currentHealth -= damage;
 
