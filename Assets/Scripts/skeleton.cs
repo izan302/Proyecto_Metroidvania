@@ -23,7 +23,7 @@ public class skeleton : MonoBehaviour
     {
         hp -= dano;
 
-        if(hp < 0)
+        if(hp <= 0)
         {
             Muerte();
         }
