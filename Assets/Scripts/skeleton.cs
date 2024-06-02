@@ -6,7 +6,7 @@ public class skeleton : MonoBehaviour
 {
     [SerializeField] private float hp;
     private Animator animator;
-    private bool alive = true;
+    public bool alive = true;
     public int damage;
 
     public PlayerMovement playerHealth;
@@ -26,7 +26,7 @@ public class skeleton : MonoBehaviour
 
         if(hp <= 0)
         {
-            Muerte();
+            if (alive) { Muerte(); }
         }
         else animator.SetTrigger("Hit");
     }
@@ -38,9 +38,12 @@ public class skeleton : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (alive)
         {
-            playerHealth.takeDamage(damage);
+            if (collision.gameObject.tag == "Player")
+            {
+                playerHealth.takeDamage(damage);
+            }
         }
     }
 }

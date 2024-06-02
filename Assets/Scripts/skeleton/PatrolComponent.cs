@@ -14,6 +14,9 @@ public class PatrollingAgent : MonoBehaviour
     public Transform currentPoint;
     public float stoppingDistance = 1f;
     Vector2 moveDirection;
+
+    public skeleton skeleton;
+
     public float remainingDistance {
         get {
             return (destination - new Vector2(transform.position.x, transform.position.y)).magnitude;
@@ -35,30 +38,42 @@ public class PatrollingAgent : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.velocity = moveDirection * speed;
-        UpdateAnimation();
+        if (skeleton.alive)
+        {
+            rb.velocity = moveDirection * speed;
+            UpdateAnimation();
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        moveDirection = Vector2.zero;
+        if (skeleton.alive)
+        {
 
-       if (remainingDistance > stoppingDistance) {
-            moveDirection = (destination - new Vector2(transform.position.x, transform.position.y)).normalized;
-       }
+            moveDirection = Vector2.zero;
 
-       Vector3 localScale = transform.localScale;
-       if (destination.x > transform.position.x)
-       {
-           localScale.x = 4.5f;
-           transform.localScale = localScale;
-       } else
-       {
-           localScale.x = -4.5f;
-           transform.localScale = localScale;
-       }
+            if (remainingDistance > stoppingDistance)
+            {
+                moveDirection = (destination - new Vector2(transform.position.x, transform.position.y)).normalized;
+            }
 
+            Vector3 localScale = transform.localScale;
+            if (destination.x > transform.position.x)
+            {
+                localScale.x = 4.5f;
+                transform.localScale = localScale;
+            }
+            else
+            {
+                localScale.x = -4.5f;
+                transform.localScale = localScale;
+            }
+        }
     }
 
     public void SetDestination(Vector2 newDestination) {

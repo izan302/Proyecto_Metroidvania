@@ -1033,7 +1033,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 458783244}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -1103,6 +1103,7 @@ MonoBehaviour:
   speed: 4
   currentPoint: {fileID: 0}
   stoppingDistance: 1
+  skeleton: {fileID: 458783253}
 --- !u!114 &458783252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1129,6 +1130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 9
+  alive: 1
   damage: 3
   playerHealth: {fileID: 990339604}
 --- !u!114 &458783254
@@ -1163,6 +1165,7 @@ MonoBehaviour:
   danoGolpe: 20
   tiempoEntreAtaques: 2
   tiempoSiguienteAtaque: 0
+  skeleton: {fileID: 458783253}
 --- !u!1 &480326681
 GameObject:
   m_ObjectHideFlags: 0

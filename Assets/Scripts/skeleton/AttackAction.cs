@@ -12,24 +12,30 @@ public class AttackAgent : MonoBehaviour
     private bool attack = false;
 
     private Animator animator;
+    public skeleton skeleton;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (tiempoSiguienteAtaque > 0)
+        if (skeleton.alive)
         {
-            tiempoSiguienteAtaque -= Time.deltaTime;
-        }
-        if (tiempoSiguienteAtaque <= 0 && attack)
-        {
-            Golpe();
-            tiempoSiguienteAtaque = tiempoEntreAtaques;
+
+            if (tiempoSiguienteAtaque > 0)
+            {
+                tiempoSiguienteAtaque -= Time.deltaTime;
+            }
+            if (tiempoSiguienteAtaque <= 0 && attack)
+            {
+                Golpe();
+                tiempoSiguienteAtaque = tiempoEntreAtaques;
+            }
         }
     }
 
