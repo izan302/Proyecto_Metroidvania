@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (alive)
+        if (alive && !rbPlayer.GetComponentInParent<PauseMenu>().isPaused)
         {
             inputLateral = Input.GetAxisRaw("Horizontal");
 
@@ -96,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        if (alive)
+        if (alive && !rbPlayer.GetComponentInParent<PauseMenu>().isPaused)
         {
             rbPlayer.velocity = new Vector2(inputLateral * velocidad, rbPlayer.velocity.y);
             animator.SetBool("Walking", true);
