@@ -9,45 +9,53 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public GameState State;
     public static event Action<GameState> OnGameStateChanged;
-    public enum GameState {
+    public enum GameState
+    {
         Running,
         Paused,
         DeadScreen,
         VictoryScreen
     }
-    
-    void Awake() {
+
+    void Awake()
+    {
         Instance = this;
     }
 
-    void Start() {
+    void Start()
+    {
         UpdateGameState(GameState.Running);
     }
-    public void UpdateGameState(GameState newState) {
+    public void UpdateGameState(GameState newState)
+    {
         State = newState;
-        //Debug.Log("new: "+newState);
-        switch (newState) {
+        switch (newState)
+        {
             case GameState.Running:
                 Time.timeScale = 1f;
-            break;
+                break;
             case GameState.Paused:
                 Time.timeScale = 0f;
-            break;
+                break;
             case GameState.DeadScreen:
                 Time.timeScale = 0f;
-            break;
+                break;
             case GameState.VictoryScreen:
                 Time.timeScale = 0f;
-            break;
+                break;
         }
         OnGameStateChanged(newState);
     }
-    void Update() {
-        if(Input.GetKeyDown(KeyCode.Escape))
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(State == GameState.Running) {
+            if (State == GameState.Running)
+            {
                 UpdateGameState(GameState.Paused);
-            }else if (State == GameState.Paused) {
+            }
+            else if (State == GameState.Paused)
+            {
                 UpdateGameState(GameState.Running);
             }
         }

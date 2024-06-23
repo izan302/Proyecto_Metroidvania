@@ -25,19 +25,24 @@ public class CameraMovement : MonoBehaviour
     {
         BoundingBoxSize = BoundingBox.GetComponent<Collider2D>().bounds.size;
     }
-    void Update() {
+    void Update()
+    {
 
-        if(Script.PlayerFuera) {
+        if (Script.PlayerFuera)
+        {
             Vector3 movePosition = player.position + offset;
 
-            if (player.position.x < transform.position.x) {
+            if (player.position.x < transform.position.x)
+            {
                 DireccionX = 1;
                 movePosition.y = -6;
-            }else {
+            }
+            else
+            {
                 DireccionX = -1;
                 movePosition.y = -6;
             }
-            transform.position = Vector3.Lerp(transform.position, movePosition + new Vector3((BoundingBoxSize.x/2)*DireccionX, 0, 0), lerp);            
+            transform.position = Vector3.Lerp(transform.position, movePosition + new Vector3((BoundingBoxSize.x / 2) * DireccionX, 0, 0), lerp);
         }
     }
 }

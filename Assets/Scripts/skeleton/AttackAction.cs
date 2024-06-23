@@ -10,23 +10,18 @@ public class AttackAgent : MonoBehaviour
     [SerializeField] private float tiempoEntreAtaques;
     [SerializeField] private float tiempoSiguienteAtaque;
     private bool attack = false;
-
     private Animator animator;
     public skeleton skeleton;
 
-    // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        
-    }
 
-    // Update is called once per frame
+    }
     void Update()
     {
         if (skeleton.alive)
         {
-
             if (tiempoSiguienteAtaque > 0)
             {
                 tiempoSiguienteAtaque -= Time.deltaTime;

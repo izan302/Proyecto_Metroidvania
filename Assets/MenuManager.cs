@@ -8,7 +8,8 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu, DeathMenu, WinMenu;
-    void Awake() {
+    void Awake()
+    {
         GameManager.OnGameStateChanged += GamemanagerOnGameStateChanged;
     }
     void OnDestroy()
@@ -17,39 +18,30 @@ public class MenuManager : MonoBehaviour
     }
     private void GamemanagerOnGameStateChanged(GameManager.GameState state)
     {
-        Debug.Log("State on Menu: "+state);
-        switch (state) {
+        switch (state)
+        {
             case GameManager.GameState.Paused:
                 pauseMenu.SetActive(true);
-            break;
+                break;
             case GameManager.GameState.DeadScreen:
                 DeathMenu.SetActive(true);
-            break;
+                break;
             case GameManager.GameState.VictoryScreen:
                 WinMenu.SetActive(true);
-            break;
+                break;
             case GameManager.GameState.Running:
                 pauseMenu.SetActive(false);
                 DeathMenu.SetActive(false);
                 WinMenu.SetActive(false);
-            break;
+                break;
         }
     }
-
-    void Start()
+    public void UnPause()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    public void UnPause() {
         GameManager.Instance.UpdateGameState(GameManager.GameState.Running);
     }
-    public void GoToMainMenu() {
+    public void GoToMainMenu()
+    {
         GameManager.Instance.UpdateGameState(GameManager.GameState.Running);
         SceneManager.LoadScene("Menu");
     }

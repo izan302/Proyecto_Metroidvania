@@ -8,26 +8,18 @@ public class skeleton : MonoBehaviour
     private Animator animator;
     public bool alive = true;
     public int damage;
-
     private Rigidbody rbSkeleton;
-
     public PlayerMovement playerHealth;
     private void Start()
     {
         animator = GetComponent<Animator>();
         rbSkeleton = gameObject.GetComponent<Rigidbody>();
     }
-
-    private void Update()
-    {
-        
-    }
-
     public void TomarDano(float dano)
     {
         hp -= dano;
 
-        if(hp <= 0)
+        if (hp <= 0)
         {
             if (alive) { Muerte(); }
         }

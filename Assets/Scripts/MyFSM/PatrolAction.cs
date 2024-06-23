@@ -16,10 +16,11 @@ public class PatrolAction : FSMAction
     {
         var patrolAgent = stateMachine.GetComponent<PatrollingAgent>();
         var patrolPoints = stateMachine.GetComponent<PatrolPoints>();
-        if (patrolAgent.remainingDistance <= patrolAgent.stoppingDistance) {
+        if (patrolAgent.remainingDistance <= patrolAgent.stoppingDistance)
+        {
             var patrolPoint = patrolPoints.GetNext().position;
             patrolAgent.SetDestination(patrolPoint);
         }
-            
+
     }
 }

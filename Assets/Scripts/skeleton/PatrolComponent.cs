@@ -17,8 +17,10 @@ public class PatrollingAgent : MonoBehaviour
 
     public skeleton skeleton;
 
-    public float remainingDistance {
-        get {
+    public float remainingDistance
+    {
+        get
+        {
             return (destination - new Vector2(transform.position.x, transform.position.y)).magnitude;
         }
     }
@@ -76,12 +78,13 @@ public class PatrollingAgent : MonoBehaviour
         }
     }
 
-    public void SetDestination(Vector2 newDestination) {
+    public void SetDestination(Vector2 newDestination)
+    {
         destination = newDestination;
     }
 
     void UpdateAnimation()
     {
-        
+
     }
 }

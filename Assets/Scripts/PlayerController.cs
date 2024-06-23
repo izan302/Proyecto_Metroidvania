@@ -30,13 +30,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float danoGolpe;
     [SerializeField] private float tiempoEntreAtaques;
     [SerializeField] private float tiempoSiguienteAtaque;
-    [SerializeField] float velocidad = 8f; 
+    [SerializeField] float velocidad = 8f;
     [SerializeField] float potenciaSalto = 16f;
     [SerializeField] GameObject BoundingBox;
 
     void Start()
     {
-        rbPlayer = gameObject.GetComponent<Rigidbody2D>(); 
+        rbPlayer = gameObject.GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         currentHealth = playerHealth;
         healthBar.setMaxHealth(playerHealth);
@@ -77,8 +77,8 @@ public class PlayerMovement : MonoBehaviour
 
             }
 
-            
-            if(tiempoSiguienteAtaque > 0)
+
+            if (tiempoSiguienteAtaque > 0)
             {
                 tiempoSiguienteAtaque -= Time.deltaTime;
             }
@@ -91,7 +91,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void FixedUpdate() {
+    private void FixedUpdate()
+    {
         if (alive && rbPlayer.GetComponentInParent<GameManager>().State == GameManager.GameState.Running)
         {
             rbPlayer.velocity = new Vector2(inputLateral * velocidad, rbPlayer.velocity.y);
@@ -103,8 +104,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void Voltear() {
-        if (mirandoDerecha && inputLateral > 0f || !mirandoDerecha && inputLateral < 0f) {
+    public void Voltear()
+    {
+        if (mirandoDerecha && inputLateral > 0f || !mirandoDerecha && inputLateral < 0f)
+        {
             mirandoDerecha = !mirandoDerecha;
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
@@ -114,8 +117,8 @@ public class PlayerMovement : MonoBehaviour
     private void Golpe()
     {
         animator.SetTrigger("Attack1");
-        
-        Collider2D[] objetos = Physics2D.OverlapCircleAll (controladorGolpe.position, radioGolpe);
+
+        Collider2D[] objetos = Physics2D.OverlapCircleAll(controladorGolpe.position, radioGolpe);
 
         foreach (Collider2D colisionador in objetos)
         {
@@ -133,33 +136,39 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-       if(other == BoundingBox.GetComponent<Collider2D>()) {
+        if (other == BoundingBox.GetComponent<Collider2D>())
+        {
             PlayerFuera = false;
         }
 
-        if (other.gameObject.tag == "Ground") {
+        if (other.gameObject.tag == "Ground")
+        {
             isGrounded = true;
         }
 
-        if (other.gameObject.tag == "End") {
+        if (other.gameObject.tag == "End")
+        {
             GameManager.Instance.UpdateGameState(GameManager.GameState.VictoryScreen);
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if(other == BoundingBox.GetComponent<Collider2D>()) {
+        if (other == BoundingBox.GetComponent<Collider2D>())
+        {
             PlayerFuera = true;
         }
 
-        if (other.gameObject.tag == "Ground") {
+        if (other.gameObject.tag == "Ground")
+        {
             isGrounded = false;
         }
     }
 
-     public void takeDamage(float damage)
+    public void takeDamage(float damage)
     {
-        if (alive) {
+        if (alive)
+        {
             currentHealth -= damage;
             animator.SetTrigger("Hurt");
 
