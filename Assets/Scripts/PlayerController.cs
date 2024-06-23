@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (alive && !rbPlayer.GetComponentInParent<PauseMenu>().isPaused)
+        if (alive && rbPlayer.GetComponentInParent<GameManager>().State == GameManager.GameState.Running)
         {
             inputLateral = Input.GetAxisRaw("Horizontal");
 
@@ -92,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        if (alive && !rbPlayer.GetComponentInParent<PauseMenu>().isPaused)
+        if (alive && rbPlayer.GetComponentInParent<GameManager>().State == GameManager.GameState.Running)
         {
             rbPlayer.velocity = new Vector2(inputLateral * velocidad, rbPlayer.velocity.y);
             animator.SetBool("Walking", true);
@@ -142,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (other.gameObject.tag == "End") {
-            rbPlayer.GetComponentInParent<PauseMenu>().EndScreen();
+            GameManager.Instance.UpdateGameState(GameManager.GameState.VictoryScreen);
         }
     }
 
@@ -170,7 +170,7 @@ public class PlayerMovement : MonoBehaviour
                 healthBar.setHealth(0);
                 animator.SetTrigger("Death");
                 alive = false;
-                rbPlayer.GetComponentInParent<PauseMenu>().DeathScreen();
+                GameManager.Instance.UpdateGameState(GameManager.GameState.DeadScreen);
             }
         }
     }
