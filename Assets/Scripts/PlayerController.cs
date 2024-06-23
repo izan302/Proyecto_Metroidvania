@@ -78,10 +78,7 @@ public class PlayerMovement : MonoBehaviour
 
             }
 
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
+            
             if(tiempoSiguienteAtaque > 0)
             {
                 tiempoSiguienteAtaque -= Time.deltaTime;
@@ -144,6 +141,10 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.tag == "Ground") {
             isGrounded = true;
         }
+
+        if (other.gameObject.tag == "End") {
+            rbPlayer.GetComponentInParent<PauseMenu>().EndScreen();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -159,16 +160,19 @@ public class PlayerMovement : MonoBehaviour
 
      public void takeDamage(float damage)
     {
-        currentHealth -= damage;
-        animator.SetTrigger("Hurt");
+        if (alive) {
+            currentHealth -= damage;
+            animator.SetTrigger("Hurt");
 
-        healthBar.setHealth(currentHealth);
+            healthBar.setHealth(currentHealth);
 
-        if (currentHealth < 0)
-        {
-            healthBar.setHealth(0);
-            animator.SetTrigger("Death");
-            alive = false;
+            if (currentHealth < 0)
+            {
+                healthBar.setHealth(0);
+                animator.SetTrigger("Death");
+                alive = false;
+                rbPlayer.GetComponentInParent<PauseMenu>().DeathScreen();
+            }
         }
     }
 }

@@ -8,10 +8,14 @@ public class PauseMenu : MonoBehaviour
     // Start is called before the first frame update
     public GameObject pauseMenu;
     public bool isPaused;
+    public GameObject deathScreen;
+    public GameObject endScreen;
     
     void Start()
     {
         pauseMenu.SetActive(false);
+        deathScreen.SetActive(false);
+        endScreen.SetActive(false);
     }
 
     void Update()
@@ -22,6 +26,10 @@ public class PauseMenu : MonoBehaviour
             {
                 ResumeGame();
             } else {PauseGame(); }
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
@@ -48,5 +56,17 @@ public class PauseMenu : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void DeathScreen() {
+        deathScreen.SetActive(true);
+        Time.timeScale = 0f;
+        isPaused = true;
+    }
+
+    public void EndScreen() {
+        endScreen.SetActive(true);
+        Time.timeScale = 0f;
+        isPaused = true;
     }
 }
