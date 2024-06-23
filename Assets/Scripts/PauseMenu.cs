@@ -16,6 +16,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(false);
         deathScreen.SetActive(false);
         endScreen.SetActive(false);
+        isPaused = false;
     }
 
     void Update()
@@ -60,8 +61,6 @@ public class PauseMenu : MonoBehaviour
 
     public void DeathScreen() {
         deathScreen.SetActive(true);
-        Time.timeScale = 0f;
-        isPaused = true;
     }
 
     public void EndScreen() {

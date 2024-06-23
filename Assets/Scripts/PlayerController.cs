@@ -40,7 +40,6 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         currentHealth = playerHealth;
         healthBar.setMaxHealth(playerHealth);
-        
     }
 
     // Update is called once per frame
